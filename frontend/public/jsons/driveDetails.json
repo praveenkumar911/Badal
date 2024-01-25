@@ -1,0 +1,82 @@
+{
+    "driveName": "Drive 1",
+    "driveId": "Drive1",
+    "createdBy": "User 1",
+    "createdDate": "2019-01-01",
+    "nodes": {
+        "fieldName": "A",
+        "fieldId": "A",
+        "stationName": "Station 1",
+        "stationId": "Station1",
+        "subField": [
+            "Subfield 1",
+            "Subfield 2",
+            "Subfield 3"
+        ],
+        "children": [
+            {
+                "fieldName": "B",
+                "fieldId": "B",
+                "stationName": "Station 2",
+                "stationId": "Station2",
+                "subField": [
+                    "Subfield 1",
+                    "Subfield 2"
+                ],
+                "children": [
+                    {
+                        "fieldName": "D",
+                        "fieldId": "D",
+                        "stationName": "Station 3",
+                        "stationId": "Station3",
+                        "subField": [
+                            "Subfield 1",
+                            "Subfield 2",
+                            "Subfield 3"
+                        ]
+                    },
+                    {
+                        "fieldName": "E",
+                        "fieldId": "E",
+                        "stationName": "Station 4",
+                        "stationId": "Station4",
+                        "subField": [
+                            "Subfield 1",
+                            "Subfield 2"
+                        ]
+                    }
+                ]
+            },
+            {
+                "fieldName": "C",
+                "fieldId": "C",
+                "stationName": "Station 2",
+                "stationId": "Station2",
+                "subField": [
+                    "Subfield 1",
+                    "Subfield 2",
+                    "Subfield 3",
+                    "Subfield 4",
+                    "Subfield 1",
+                    "Subfield 2",
+                    "Subfield 3",
+                    "Subfield 4"
+                ]
+            }
+        ]
+    },
+    "assistants": [
+        { "name": "Jane Doe", "contact": "0099900999", "email": "doe@gmial.com" },
+        { "name": "John Cats", "contact": "0099900999", "email": "cats@yahoo.com" },
+        { "name": "Finius", "contact": "1234543215", "email": "fin@aol.com" },
+        { "name": "Morty", "contact": "1234543215", "email": "some@email.com" },
+        { "name": "Janus", "contact": "7876754321", "email": "janus@some.in" }
+    ],
+    "medicalAssistants": [
+        { "name": "Jane Doe", "contact": "0099900999", "email": "doe@gmial.com" },
+        { "name": "John Cats", "contact": "0099900999", "email": "cats@yahoo.com" },
+        { "name": "Finius", "contact": "1234543215", "email": "fin@aol.com" },
+        { "name": "Morty", "contact": "1234543215", "email": "some@email.com" },
+        { "name": "Janus", "contact": "7876754321", "email": "janus@some.in" }
+    ]
+}
