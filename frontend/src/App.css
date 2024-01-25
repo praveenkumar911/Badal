@@ -1,0 +1,327 @@
+/* Prime React Components CSS */
+
+/* Input Switch */
+
+.p-inputswitch {
+    width: 1.7rem;
+    height: 0.755rem;
+}
+
+.p-inputswitch.p-focus .p-inputswitch-slider{
+    box-shadow: none;
+}
+
+.p-inputswitch .p-inputswitch-slider,
+.p-inputswitch.p-focus .p-inputswitch-slider{
+    background-color: #FEFEFE !important;
+    outline: 2px solid #4E4E4E;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider{
+    background-color: #4E4E4E !important;
+}
+
+.p-inputswitch .p-inputswitch-slider:before{
+    background-color: #4E4E4E !important;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+    background-color: #FEFEFE !important;
+}
+
+.p-inputswitch .p-inputswitch-slider:before {
+    background: #ffffff;
+    width: 0.525rem;
+    height: 0.525rem;
+    left: 0.065rem;
+    margin-top: -0.25rem;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+    transform: translateX(0.95rem);
+}
+
+
+/* Organisational Chart */
+
+.p-organizationchart .p-organizationchart-node-content .p-node-toggler {
+    display: none;
+}
+
+.p-organizationchart .p-organizationchart-node-content {
+    border: none;
+    background: none;
+    padding: 0rem !important;
+}
+
+.p-organizationchart .p-organizationchart-line-down {
+    background: #4E4E4E;
+    width: 2px;
+}
+
+.p-organizationchart .p-organizationchart-line-top {
+    border-top: 2px solid #4E4E4E;
+    border-color: #4E4E4E;
+}
+
+.p-organizationchart .p-organizationchart-line-left {
+    border-right: 2px solid #4E4E4E;
+    border-color: #4E4E4E;
+}
+
+
+/* Multi Select */
+.p-multiselect{
+    box-shadow: none !important;
+    font-size: 0.8rem;
+}
+
+.p-multiselect-filter-container > input:focus{
+    box-shadow: none !important;
+}
+
+.p-multiselect-filter-container > input{
+    font-size: 0.8rem;
+}
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-empty-message{
+    font-size: 0.8rem;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus{
+    box-shadow: none !important;
+}
+
+
+/* Calendar */
+
+button.p-button.p-component.p-datepicker-trigger.p-button-icon-only {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    height: 25px;
+    width: auto;
+    margin-left: 5px;
+}
+
+.p-button:focus {
+    box-shadow: none !important;
+}
+
+/* Chips */
+.p-multiselect.p-multiselect-chip .p-multiselect-token {
+    background-color: #D9D9D9;
+    color: #4E4E4E;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin: 3px 5px;
+}
+
+.p-multiselect-token-label {
+    font-size: 0.8rem;
+}
+
+/* Picklist */
+.p-picklist .p-picklist-buttons .p-button {
+    background-color: transparent;
+    border: none;
+}
+
+.p-picklist .p-picklist-buttons .p-button span.p-button-icon {
+    color: #4E4E4E;
+    font-size: 1.5rem;
+}
+
+.p-picklist .p-picklist-buttons .p-button span.p-button-icon.p-c.pi.pi-angle-right::before{
+    content: "\e905";
+}
+
+.p-picklist .p-picklist-buttons .p-button span.p-button-icon.p-c.pi.pi-angle-left::before{
+    content: "\e904";
+}
+
+button.p-button.p-component.p-button-icon-only:nth-child(even) {
+    display: none;
+}
+
+.p-picklist .p-picklist-list .p-picklist-item.p-highlight {
+    background-color: #4e4e4e;
+    color: #efefef;
+    font-weight: 500;
+}
+
+.p-picklist .p-picklist-list .p-picklist-item{
+    font-size: 0.8rem;
+}
+
+.p-picklist .p-picklist-list .p-picklist-item:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.p-picklist .p-picklist-header {
+    background-color: #efefef;
+    padding: 5px;
+}
+
+
+/* List Box */
+.p-listbox.p-component.subField_list {
+    border: none;
+    padding: 5px
+}
+
+.p-listbox.p-component.subField_list .p-listbox-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 5rem;
+    width: 40rem;
+}
+.p-listbox.p-component.subField_list .p-listbox-list .p-listbox-item .radio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-listbox.p-component.subField_list .p-listbox-list .p-listbox-item .radio::before{
+    content: "\e9dc";
+    font-family: primeicons;
+    font-size: 1rem;
+    color: #4E4E4E;
+    margin-right: 2px;
+    vertical-align: bottom;
+}
+.p-listbox.p-component.subField_list .p-listbox-list .p-listbox-item.p-highlight .radio::before{
+    content: "\e9dd";
+    border: 1px solid #4e4e4e;
+    font-size: 0.6rem;
+    padding: 0.15rem;
+    border-radius: 50px;
+}
+
+.p-listbox.p-component.subField_list .p-listbox-list .p-listbox-item .item {
+    font-size: 0.8rem;
+    border: 1px solid #4e4e4e;
+    padding: 2px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+.p-listbox.subField_list .p-listbox-list .p-listbox-item.p-highlight {
+    background-color: transparent;
+    color: inherit;
+}
+
+.p-listbox .p-listbox-list .p-listbox-item:focus {
+    box-shadow: none;
+}
+.p-listbox .p-listbox-list .p-listbox-item {
+    padding: 0.25rem 0.3rem;;
+}
+
+.p-listbox:not(.p-disabled).subField_list .p-listbox-item:not(.p-highlight):not(.p-disabled):hover {
+    background-color: inherit;
+}
+
+/* File upload */
+
+.personnel_data.p-fileupload.p-fileupload-advanced.p-component{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.personnel_data.p-fileupload.p-fileupload-advanced.p-component .p-fileupload-buttonbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: none;
+}
+.personnel_data.p-fileupload.p-fileupload-advanced.p-component .p-fileupload-buttonbar .p-button{
+    background-color: #d9d9d9;
+    color: #4e4e4e;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    margin: 0px 10px;
+    font-weight: 700;
+}
+
+.personnel_data.p-fileupload.p-fileupload-advanced.p-component .p-fileupload-content{
+    box-shadow: 0px 0px 6px 0px #4e4e4e inset;
+    color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+.personnel_data.p-fileupload.p-fileupload-advanced.p-component .p-fileupload-content .p-fileupload-files {
+    flex: 1;
+}
+
+
+/* Accordions */
+.p-accordion .p-accordion-tab {
+    margin: 10px;
+}
+
+.p-accordion-header-text{
+    flex: 1;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled) .p-accordion-header-link:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.p-accordion .p-accordion-header .p-accordion-header-link,
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link,
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link,
+.p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link {
+    background-color: #D9D9D9;
+    border: none;
+    color: #4E4E4E;
+    padding: 5px 15px;
+}
+
+.page__logic.p-accordion .p-accordion-header .p-accordion-header-link,
+.page__logic.p-accordion .p-accordion-header:not(.p-disabled).p-highlight:hover .p-accordion-header-link,
+.page__logic.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link,
+.page__logic.p-accordion .p-accordion-header:not(.p-highlight):not(.p-disabled):hover .p-accordion-header-link{
+    background-color: #4E4E4E;
+    color: #EFEFEF;
+}
+
+.page__logoic .p-accordion .p-accordion-header .p-accordion-header-link .p-accordion-toggle-icon{
+    color: #4E4E4E;
+    font-size: 0.7rem;
+}
+
+.page__logic span.p-accordion-header-text{
+    font-size: 0.8rem;
+    padding: 5px 0px;
+    font-weight: 700;
+}
+
+.page__logic.p-accordion .p-accordion-content{
+    background-color: #EFEFEF;
+}
+
+
+/* Steps */
+
+.p-steps .p-steps-item .p-menuitem-link:not(.p-disabled):focus{
+    outline: none;
+    box-shadow: none;
+}
+
+input[type="radio"] {
+    accent-color: #4E4E4E;
+}
+
+.p-steps .p-steps-item.p-highlight .p-steps-number{
+    background-color: #4E4E4E;
+    color: #EFEFEF;
+}
