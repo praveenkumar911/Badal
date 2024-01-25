@@ -1,0 +1,18 @@
+.main-footer {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #D9D9D9;
+    height: 11.3vh;
+
+    .label {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main-footer{
+        display: none;
+    }
+}
