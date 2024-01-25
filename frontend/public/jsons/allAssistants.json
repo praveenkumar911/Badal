@@ -1,0 +1,20 @@
+{
+    "assistants": [
+        {
+            "id": 1,
+            "fullName": "Abc"
+        },
+        {
+            "id": 2,
+            "fullName": "Jane Doe"
+        },
+        {
+            "id": 3,
+            "fullName": "John Smith"
+        },
+        {
+            "id": 4,
+            "fullName": "Jane Smith"
+        }
+    ]
+}
