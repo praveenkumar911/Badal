@@ -1,0 +1,28 @@
+{
+    "medicalAssistants": [
+        {
+            "id": 1,
+            "fullName": "Emma Watson"
+        },
+        {
+            "id": 2,
+            "fullName": "Emma 2"
+        },
+        {
+            "id": 3,
+            "fullName": "Ashish Jha"
+        },
+        {
+            "id": 4,
+            "fullName": "Ashish Jhan"
+        },
+        {
+            "id": 5,
+            "fullName": "Dev Ashish"
+        },
+        {
+            "id": 6,
+            "fullName": "Emma Watson"
+        }
+    ]
+}

@@ -1,0 +1,84 @@
+
+.assistant
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .addButton {
+        width: 80%;
+        padding: 5px;
+        background: #D9D9D9;
+        margin: 10px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        cursor: pointer;
+        border: 1px dotted #4E4E4E;
+        box-shadow: 0px 0px 7px 0px #4E4E4E inset;
+
+        img {
+            margin-right: 8.5px;
+            height: 30px;
+        }
+
+        .label {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .user
+        {
+            margin-right: 8.5px;
+        }
+    }
+
+    .searchBar
+    {
+        align-items: center;
+        justify-content: flex-end;
+        display: flex;
+        width: 80%;
+    
+        input {
+            border-radius: 15px;
+            border-color: #4e4e4e;
+            font-size: 15px;
+            padding: 5px 10px;
+            flex: 1;
+        }
+    
+        .searchIcon {
+            position: absolute;
+            i {
+                position: relative;
+                right: 15px;
+                font-weight: 700;
+                cursor: pointer;
+            }
+        } 
+    }
+
+    table
+    {
+        border : 1px solid black;
+        width : 80%;
+        margin : 15px;
+
+        th
+        {
+            border-collapse: collapse;
+            background-color : #4e4e4e;
+            color: #D9D9D9;
+        }
+
+        td
+        {
+            border: 1px solid black;
+
+        }
+    }
+
+}
+

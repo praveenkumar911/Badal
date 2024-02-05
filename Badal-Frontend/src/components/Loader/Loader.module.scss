@@ -1,0 +1,45 @@
+.loader {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: #00000050;
+    position: fixed;
+
+    .loader__container {
+        display: flex;
+        flex: 1;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+
+        .loader__container__spinner{
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            border: 3px solid #efefef;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loader__container__spinner_second{
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            border: 3px solid #efefef;
+            border-top-color: transparent;
+            animation: spin 0.5s linear infinite reverse;
+        }
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}

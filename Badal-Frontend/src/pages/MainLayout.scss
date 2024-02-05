@@ -1,0 +1,25 @@
+.layout-container {
+    display: flex;
+
+    .main-container {
+        flex: 1;
+        height: 100vh;
+        overflow: auto;
+
+        .sub-container {
+            min-height: 95vh;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .layout-container {
+        .main-container {
+            .sub-container {
+                min-height: calc(100% - 69px);
+                max-height: calc(100% - 69px);
+                overflow: auto;
+            }
+        }
+    }
+}

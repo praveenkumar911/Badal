@@ -1,0 +1,203 @@
+.nav-container {
+    width: 272px;
+    height: 100vh;
+    // position: fixed;
+    background-color: #4E4E4E;
+    color: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.4s ease;
+    overflow: hidden;
+
+    &.vertical {
+        width: 80px !important;
+
+        // .menu-list .menu-item:hover, .menu-list .menu-item.active {
+        //     background-color: transparent !important;
+        //     filter: none !important;
+        //     color: #262626;
+        // }
+    }
+
+    .nav-header{
+        display: flex;
+        margin: 30px 20px;
+
+        .hamburger {
+            display: none;
+        }
+
+        .title {
+            font-size: 30px;
+            margin: 0px 20px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        img.hamburger-image {
+            cursor: pointer;
+            display: block;
+        }
+    }
+
+    .menu-list {
+        margin: 40px 0px;
+
+        a {
+            text-decoration: none;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            cursor: pointer;
+            color: #D9D9D9;
+
+            .img {
+                height: 35px;
+            }
+
+            .label {
+                font-size: 20px;
+                margin: 0px 20px;
+                white-space: nowrap;
+            }
+
+            &.active .label {
+                font-weight: 700;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .nav-footer {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        flex: 1;
+
+        .user {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 20px;
+            cursor: pointer;
+
+            .label {
+                white-space: nowrap;
+            }
+        }
+
+        .actions {
+            padding: 0px 7px;
+
+            .items {
+                display: flex;
+                margin: 3px 0px;
+                font-size: 12px;
+
+                &.languages {
+                    align-items: center;
+                }
+
+                .lang {
+                    border-collapse: collapse;
+                    margin: 0px 10px;
+
+                    .lang-item {
+                        border: 1px solid;
+                        padding: 2px 5px;
+                        font-size: 10px;
+                    }
+                }
+            }
+
+            &.vertical {
+                .label {
+                    writing-mode: vertical-rl;
+                    transform: scale(-1);
+                    margin: 2px 0px;
+                    animation: rotation 1s ease;
+                    animation-fill-mode: forwards;
+                }
+            }
+        }
+    }
+}
+
+@keyframes rotation {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav-container {
+        background-color: #FFFFFF;
+        flex-direction: row;
+        position: fixed;
+        box-shadow: 0px 0px 5px 0px #4E4E4E;
+        z-index: 2;
+
+        &.vertical {
+            width: 0 !important;
+        }
+
+        .nav-header {
+            align-items: flex-start;
+
+            .hamburger {
+                display: block;
+                background: url("../../../public/assets/icons/web/active/hamburger.svg");
+                height: 32px;
+                width: 32px;
+                cursor: pointer;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
+
+            img.hamburger-image {
+                display: none;
+            }
+
+            .title {
+                display: none;
+            }
+
+            img {
+                width: 32px;
+            }
+        }
+
+        .menu-list {
+            display: none;
+        }
+
+        .nav-footer {
+            justify-content: flex-start;
+            padding: 34px 0px;
+            color: #4E4E4E;
+
+            img {
+                display: none;
+            }
+
+            .actions {
+                padding: 0;
+
+                .items {
+                    padding: 5px 0px;
+                }
+                
+                table {
+                    display: none;
+                }
+            }
+        }
+    }
+}
