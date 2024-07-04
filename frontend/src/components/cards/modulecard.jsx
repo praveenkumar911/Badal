@@ -39,7 +39,7 @@ export const ModuleCard = ({ product, projectdata }) => {
   useEffect(() => {
     const fetchExtraPermissions = async () => {
       try {
-        const response = await axios.get("http://10.8.0.12:5000/get-extra-permissions");
+        const response = await axios.get("http://10.8.0.14:5000/get-extra-permissions");
         setPermissionextra(response.data.permissions);
       } catch (error) {
         console.error("Error fetching extra permissions:", error);
@@ -55,7 +55,7 @@ export const ModuleCard = ({ product, projectdata }) => {
         if (product.assigned_teams && product.assigned_teams.length > 0) {
           // Array to hold promises for fetching team names
           const teamNamePromises = product.assigned_teams.map(async (teamId) => {
-            const response = await axios.get(`http://10.8.0.12:5000/get-team-by-id/${teamId}`);
+            const response = await axios.get(`http://10.8.0.14:5000/get-team-by-id/${teamId}`);
             const team = response.data;
             if (team) {
               return team.teamName;
@@ -101,9 +101,9 @@ export const ModuleCard = ({ product, projectdata }) => {
     try {
       let teamsEndpoint;
       if (isP001Allowed && projectdata.assignedTo === orgId) {
-        teamsEndpoint = `http://10.8.0.12:5000/get-org-teams/${orgId}`;
+        teamsEndpoint = `http://10.8.0.14:5000/get-org-teams/${orgId}`;
       } else if (isP005Allowed) {
-        teamsEndpoint = "http://10.8.0.12:5000/get-all-teams";
+        teamsEndpoint = "http://10.8.0.14:5000/get-all-teams";
       } else {
         swal.fire({
           icon: 'error',
@@ -157,7 +157,7 @@ export const ModuleCard = ({ product, projectdata }) => {
           const moduleGitID = product.gitlabid;
           const teamGitID = selectedTeamProduct.teamGitId;
           const forkAndAddToSubgroupResponse = await axios.post(
-            `http://10.8.0.12:5000/fork-and-add-to-subgroup/${moduleGitID}/${teamGitID}`
+            `http://10.8.0.14:5000/fork-and-add-to-subgroup/${moduleGitID}/${teamGitID}`
           );
           const { id: forkedGitlabId, web_url: forkedGitlabUrl } = forkAndAddToSubgroupResponse.data;
 
@@ -190,18 +190,18 @@ export const ModuleCard = ({ product, projectdata }) => {
           };
 
           const createWorkspaceResponse = await axios.post(
-            "http://10.8.0.12:5000/create-workspace",
+            "http://10.8.0.14:5000/create-workspace",
             createWorkspacePayload
           );
           const appendTeamsResponse = await axios.put(
-            `http://10.8.0.12:5000/append-teams/${product._id}`,
+            `http://10.8.0.14:5000/append-teams/${product._id}`,
             { teamIds: [selectedTeamProduct.teamId] }
           );
 
           const createdWorkspaceId = createWorkspaceResponse.data.savedWorkspace.workspaceId;
           const baseurl=createWorkspaceResponse.data.savedWorkspace.forkedGitlabUrl;
 
-          await axios.post(`http://10.8.0.12:5000/migrate-tasks/${createdWorkspaceId}/${product._id}` ,{ baseUrl: baseurl });
+          await axios.post(`http://10.8.0.14:5000/migrate-tasks/${createdWorkspaceId}/${product._id}` ,{ baseUrl: baseurl });
 
           setIsLoading(false);
           swal.fire({
@@ -235,7 +235,7 @@ export const ModuleCard = ({ product, projectdata }) => {
     try {
       // Fetch user data
       const userId = localStorage.getItem('userId');
-      const userResponse = await axios.get(`http://10.8.0.12:5000/get-user/${userId}`);
+      const userResponse = await axios.get(`http://10.8.0.14:5000/get-user/${userId}`);
       const userData = userResponse.data[0];  // Assuming userData is an array with one object
       const userTeams = userData.teamId || [];
   

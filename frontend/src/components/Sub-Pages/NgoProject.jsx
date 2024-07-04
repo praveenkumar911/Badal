@@ -15,7 +15,7 @@ function NgoProjects() {
   useEffect(() => { 
     async function fetchProjects() {
       try {
-        const response = await fetch(`http://10.8.0.12:5000/get-projects-by-org/${ngoId}`);
+        const response = await fetch(`http://10.8.0.14:5000/get-projects-by-org/${ngoId}`);
         const data = await response.json();
         console.log("API Response:", data); // Log the data for inspection
 

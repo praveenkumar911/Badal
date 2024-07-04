@@ -36,7 +36,7 @@ function EditTask(props) {
 
   useEffect(() => {
     axios
-      .post('http://10.8.0.12:5000/get-Taskby-id', { taskId })
+      .post('http://10.8.0.14:5000/get-Taskby-id', { taskId })
       .then((response) => {
         const task = response.data[0];
       
@@ -102,7 +102,7 @@ function EditTask(props) {
 
     // Update the GitLab issue description first
     axios
-      .put(`http://10.8.0.12:5000/edit-issue/${moduleGitLabID}/${issueIid}`, {
+      .put(`http://10.8.0.14:5000/edit-issue/${moduleGitLabID}/${issueIid}`, {
         taskName:formData.taskName,
         description: formData.taskDescription,
       })
@@ -111,7 +111,7 @@ function EditTask(props) {
 
         // Log the GitLab issue update using the /log route
         axios
-          .post('http://10.8.0.12:5000/log', {
+          .post('http://10.8.0.14:5000/log', {
             index: 'badal',
             data: {
               action: 'update-issue',
@@ -130,7 +130,7 @@ function EditTask(props) {
 
         // Update the task in the database with the new data
         axios
-          .put('http://10.8.0.12:5000/edit-task-DB', {
+          .put('http://10.8.0.14:5000/edit-task-DB', {
             taskid: taskId,
             tasksdata: formData,
           })
@@ -139,7 +139,7 @@ function EditTask(props) {
 
             // Log the task update using the /log route
             axios
-              .post('http://10.8.0.12:5000/log', {
+              .post('http://10.8.0.14:5000/log', {
                 index: 'badal',
                 data: {
                   action: 'update-task',

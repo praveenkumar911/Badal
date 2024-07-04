@@ -31,7 +31,7 @@ function Module() {
   const [isNgo, setIsNgo] = useState(false);
   useEffect(() => {
     // Make a request to fetch organization data
-    fetch(`http://10.8.0.12:5000/get-org/${orgId}`)
+    fetch(`http://10.8.0.14:5000/get-org/${orgId}`)
       .then(response => response.json())
       .then(data => {
         // Check if isNgo is true
@@ -59,7 +59,7 @@ function Module() {
   useEffect(() => {
     async function fetchProjectDetails() {
       try {
-        const response = await fetch(`http://10.8.0.12:5000/get-project/${projectId}`);
+        const response = await fetch(`http://10.8.0.14:5000/get-project/${projectId}`);
         const data = await response.json();
         setProjectDetails(data); // Set project details
       } catch (error) {
@@ -69,7 +69,7 @@ function Module() {
   
     // async function fetchModules() {
     //   try {
-    //     const response = await fetch(`http://10.8.0.12:5000/get-allmodules`);
+    //     const response = await fetch(`http://10.8.0.14:5000/get-allmodules`);
     //     const data = await response.json();
   
     //     // Additional condition check
@@ -78,7 +78,7 @@ function Module() {
     //       const userId = localStorage.getItem("userId");
   
     //       // Fetch user data using userId
-    //       const userResponse = await fetch(`http://10.8.0.12:5000/get-user/${userId}`);
+    //       const userResponse = await fetch(`http://10.8.0.14:5000/get-user/${userId}`);
     //       const userData = await userResponse.json();
   
     //       // Extract teamIds from userData
@@ -168,11 +168,11 @@ function Module() {
         // Fetch modules from the new endpoint using the projectId
         if (isP002Allowed || isP001Allowed) {
           // Fetch module data for projectId
-          const response = await fetch(`http://10.8.0.12:5000/get-module-DB/${projectId}`);
+          const response = await fetch(`http://10.8.0.14:5000/get-module-DB/${projectId}`);
           data = await response.json();
         } else {
           // Fetch all modules data
-          const response = await fetch(`http://10.8.0.12:5000/get-module-DB/${projectId}`);
+          const response = await fetch(`http://10.8.0.14:5000/get-module-DB/${projectId}`);
           data = await response.json();
         }
     
@@ -183,7 +183,7 @@ function Module() {
           const userId = localStorage.getItem("userId");
     
           // Fetch user data using userId
-          const userResponse = await fetch(`http://10.8.0.12:5000/get-user/${userId}`);
+          const userResponse = await fetch(`http://10.8.0.14:5000/get-user/${userId}`);
           const userData = await userResponse.json();
     
           // Extract teamIds from userData
@@ -279,7 +279,7 @@ function Module() {
         return; // Exit early if projectDetails or assignedTo is null
       }
     console.log('fnm',projectDetails.assignedTo);
-      const response = await axios.get(`http://10.8.0.12:5000/get-org/${projectDetails.assignedTo}`);
+      const response = await axios.get(`http://10.8.0.14:5000/get-org/${projectDetails.assignedTo}`);
       const team = response.data;
       if (team) {
         setAssignedTeamName(team.orgName);
@@ -332,7 +332,7 @@ function Module() {
 
     try {
       // API call to assign the project to the organization
-      const response1 = await fetch(`http://10.8.0.12:5000/project/${projectId}/assign/${orgId}`, {
+      const response1 = await fetch(`http://10.8.0.14:5000/project/${projectId}/assign/${orgId}`, {
         method: 'PUT',
       });
 
@@ -341,7 +341,7 @@ function Module() {
       }
 
       // API call to pick the project for the organization
-      const response2 = await fetch(`http://10.8.0.12:5000/organization/${orgId}/pick-project/${projectId}`, {
+      const response2 = await fetch(`http://10.8.0.14:5000/organization/${orgId}/pick-project/${projectId}`, {
         method: 'PUT',
       });
 
@@ -359,15 +359,15 @@ function Module() {
   const handleDeleteProject = async () => {
     try {
       // Delete project in GitLab
-      const response = await axios.delete(`http://10.8.0.12:5000/delete-subgroup/${projectDetails.gitlabId }`);
+      const response = await axios.delete(`http://10.8.0.14:5000/delete-subgroup/${projectDetails.gitlabId }`);
       console.log(response.data);
   
       // Delete project in database
-      await axios.delete(`http://10.8.0.12:5000/delete-project/${projectId}`);
+      await axios.delete(`http://10.8.0.14:5000/delete-project/${projectId}`);
       console.log(`Project with ID ${projectId} deleted from database`);
   
       // Delete project ID from NGO collection
-      await axios.delete(`http://10.8.0.12:5000/delete-project-from-ngo/${projectId}`);
+      await axios.delete(`http://10.8.0.14:5000/delete-project-from-ngo/${projectId}`);
       console.log(`Project with ID ${projectId} removed from NGO collection`);
   
       // Log successful project deletion
@@ -378,7 +378,7 @@ function Module() {
           timestamp: new Date(),
         },
       };
-      await axios.post(`http://10.8.0.12:5000/log`, logData);
+      await axios.post(`http://10.8.0.14:5000/log`, logData);
   
       // Redirect to dashboard
       navigate('/rcts/badal/projects')
@@ -393,7 +393,7 @@ function Module() {
           timestamp: new Date(),
         },
       }; 
-      await axios.post(`http://10.8.0.12:5000/log`, logData);
+      await axios.post(`http://10.8.0.14:5000/log`, logData);
   
       // Show an error alert to the user
       alert(`Error deleting project "${projectDetails.projectName}": ${err.message}`);

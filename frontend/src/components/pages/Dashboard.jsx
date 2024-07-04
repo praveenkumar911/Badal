@@ -30,7 +30,7 @@
 //   const navigate = useNavigate();
 //   const getCompletedCount = async () => {
 //     try {
-//         const response = await axios.get('http://10.8.0.12:5000/count-completed');
+//         const response = await axios.get('http://10.8.0.14:5000/count-completed');
 //         const count = response.data.count;
 //         setReview(count)
 //         console.log('Count of completed workspaces:', count);
@@ -43,7 +43,7 @@
 
 //   React.useEffect(() => {
 //     axios
-//       .get("http://10.8.0.12:5000/get-allmodules")
+//       .get("http://10.8.0.14:5000/get-allmodules")
 //       .then((res) => {
 //         setModuleDetails(res.data.data);
 //       })
@@ -57,12 +57,12 @@
 //     if (selectedOrgId===''){
 //         needid=localStorage.getItem('orgId')
 //     }
-//     axios.get(`http://10.8.0.12:5000/get-org/${needid}`)
+//     axios.get(`http://10.8.0.14:5000/get-org/${needid}`)
 //     .then(orgResponse => {
 //       const isNgo = orgResponse.data.isNgo;
 
 //       // Fetch project data
-//       axios.get("http://10.8.0.12:5000/get-project-DB")
+//       axios.get("http://10.8.0.14:5000/get-project-DB")
 //         .then(projectResponse => {
 //           setProjectData(projectResponse.data);
 
@@ -96,7 +96,7 @@
 //   useEffect(() => {
 //     if (projectdata.length > 0) { 
 //       // Fetch image URLs and org names based on orgIds
-//       axios.get('http://10.8.0.12:5000/get-img-url', { params: { orgIds: projectdata.map(project => project.projectOwner) } })
+//       axios.get('http://10.8.0.14:5000/get-img-url', { params: { orgIds: projectdata.map(project => project.projectOwner) } })
 //         .then(response => {
 //           const orgDetails = response.data.orgDetails.reduce((acc, orgDetail,index) => {
 //             acc.orgImgUrls[projectdata[index].projectOwner] = orgDetail.imgUrl;
@@ -116,7 +116,7 @@
 //     async function fetchProjectModuleCounts() {
 //       try {
 //         // Fetch project-module counts data
-//         const response = await axios.get(`http://10.8.0.12:5000/org/${selectedOrgId}/project-module-counts`);
+//         const response = await axios.get(`http://10.8.0.14:5000/org/${selectedOrgId}/project-module-counts`);
 //         setProjectModuleCounts(response.data);
 //       } catch (error) {
 //         console.error('Error fetching project-module counts:', error);
@@ -136,17 +136,17 @@
 //           if (selectedOrgId==''){
 //             needid=localStorage.getItem('orgId')
 //           }
-//           const orgResponse = await axios.get(`http://10.8.0.12:5000/organization/${needid}`);
+//           const orgResponse = await axios.get(`http://10.8.0.14:5000/organization/${needid}`);
 //           setOrgData(orgResponse.data);
 //           setSelectedOrgId(OrgId);
 //         } else {
 //           console.log('Fetching all organizations with roleId R002-B');
-//           const orgsResponse = await axios.get('http://10.8.0.12:5000/org/role2');
+//           const orgsResponse = await axios.get('http://10.8.0.14:5000/org/role2');
 //           setOrganizations(orgsResponse.data);
 //           setSelectedOrgId(orgsResponse.data[0]?.orgId || '');
 //           if (orgsResponse.data.length > 0) {
 //             const firstOrgId = orgsResponse.data[0].orgId;
-//             const orgResponse = await axios.get(`http://10.8.0.12:5000/organization/${firstOrgId}`);
+//             const orgResponse = await axios.get(`http://10.8.0.14:5000/organization/${firstOrgId}`);
 //             setOrgData(orgResponse.data);
 //           }
 //         }
@@ -164,7 +164,7 @@
 //         setLoading(true);
 //         console.log(`Fetching users for organization: ${orgId}`);
 //         // Fetch users data
-//         const usersResponse = await axios.get(`http://10.8.0.12:5000/get-users-by-org/${orgId}`);
+//         const usersResponse = await axios.get(`http://10.8.0.14:5000/get-users-by-org/${orgId}`);
 //         const users = usersResponse.data;
 
 //         // Count developers (roleId === 'R003')
@@ -192,7 +192,7 @@
 //     try {
 //       console.log(`Organization selected: ${orgId}`);
 //       // Fetch organization data by selected OrgId
-//       const orgResponse = await axios.get(`http://10.8.0.12:5000/organization/${orgId}`);
+//       const orgResponse = await axios.get(`http://10.8.0.14:5000/organization/${orgId}`);
 //       setOrgData(orgResponse.data);
 //       // Save selected organization and its ID in localStorage
 //       localStorage.setItem('selectedOrg', orgResponse.data.orgName);

@@ -91,7 +91,7 @@ export default function CompanyDetails({ company }) {
       }
   
       // Update Company details in backend
-      await axios.put(`http://10.8.0.12:5000/update-org/${updatedCompany.orgId}`, updatedCompany);
+      await axios.put(`http://10.8.0.14:5000/update-org/${updatedCompany.orgId}`, updatedCompany);
   
       // Update company state with updatedCompany
       setEditedCompany(updatedCompany);

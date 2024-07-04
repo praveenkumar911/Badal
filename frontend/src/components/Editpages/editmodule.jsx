@@ -44,7 +44,7 @@ function EditModule(props) {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await axios.get('http://10.8.0.12:5000/api/skills');
+        const res = await axios.get('http://10.8.0.14:5000/api/skills');
         setSkillsList(res.data);
       } catch (error) {
         console.log(error);
@@ -56,7 +56,7 @@ function EditModule(props) {
   useEffect(() => {
     const fetchModuleDetails = async () => {
       try {
-        const res = await axios.get(`http://10.8.0.12:5000/modules/${moduleID}`);
+        const res = await axios.get(`http://10.8.0.14:5000/modules/${moduleID}`);
         setUsefulData({
             ...res.data,
             moduleDateStart: new Date(res.data.moduleDateStart).toISOString().substr(0, 10),  // Convert to ISO format and only extract date part
@@ -130,7 +130,7 @@ function EditModule(props) {
     try {
       const { workspaceDescription,gitlabId } = usefulData;
       const repoGitlabId = gitlabId || usefulData.forkedGitlabId;
-      const gitlabProjectRes = await axios.put(`http://10.8.0.12:5000/edit-repo/${repoGitlabId}`, {
+      const gitlabProjectRes = await axios.put(`http://10.8.0.14:5000/edit-repo/${repoGitlabId}`, {
         //name: projectName,
         newDescription: workspaceDescription,
       });
@@ -138,7 +138,7 @@ function EditModule(props) {
         try {
           const pushToFileFolderData = new FormData();
           pushToFileFolderData.append('file', selectedFile);
-          await axios.post(`http://10.8.0.12:5000/push-to-folder/${repoGitlabId}/Requirements`, pushToFileFolderData);
+          await axios.post(`http://10.8.0.14:5000/push-to-folder/${repoGitlabId}/Requirements`, pushToFileFolderData);
           console.log('File uploaded successfully to GitLab project folder: Requirements');
         } catch (error) {
           console.log(`Error uploading file to GitLab project folder: Requirements: ${error.message}`);
@@ -149,7 +149,7 @@ function EditModule(props) {
         try {
           const pushToFileFolderData = new FormData();
           pushToFileFolderData.append('file', selectedFile1);
-          await axios.post(`http://10.8.0.12:5000/push-to-folder/${repoGitlabId}}/UI Mocks`, pushToFileFolderData);
+          await axios.post(`http://10.8.0.14:5000/push-to-folder/${repoGitlabId}}/UI Mocks`, pushToFileFolderData);
           console.log('File uploaded successfully to GitLab project folder: UI Mocks');
         } catch (error) {
           console.log(`Error uploading file to GitLab project folder: UI Mocks: ${error.message}`);
@@ -160,7 +160,7 @@ function EditModule(props) {
         try {
           const pushToFileFolderData = new FormData();
           pushToFileFolderData.append('file', selectedFile2);
-          await axios.post(`http://10.8.0.12:5000/push-to-folder/${repoGitlabId}/Database Documentation`, pushToFileFolderData);
+          await axios.post(`http://10.8.0.14:5000/push-to-folder/${repoGitlabId}/Database Documentation`, pushToFileFolderData);
           console.log('File uploaded successfully to GitLab project folder: Database Documentation');
         } catch (error) {
           console.log(`Error uploading file to GitLab project folder: Database Documentation: ${error.message}`);
@@ -171,7 +171,7 @@ function EditModule(props) {
         try {
           const pushToFileFolderData = new FormData();
           pushToFileFolderData.append('file', selectedFile3);
-          await axios.post(`http://10.8.0.12:5000/push-to-folder/${repoGitlabId}/API Documentation`, pushToFileFolderData);
+          await axios.post(`http://10.8.0.14:5000/push-to-folder/${repoGitlabId}/API Documentation`, pushToFileFolderData);
           console.log('File uploaded successfully to GitLab project folder: API Documentation');
         } catch (error) {
           console.log(`Error uploading file to GitLab project folder: API Documentation: ${error.message}`);
@@ -182,14 +182,14 @@ function EditModule(props) {
         try {
           const pushToFileFolderData = new FormData();
           pushToFileFolderData.append('file', selectedFile4);
-          await axios.post(`http://10.8.0.12:5000/push-to-folder/${repoGitlabId}/Others`, pushToFileFolderData);
+          await axios.post(`http://10.8.0.14:5000/push-to-folder/${repoGitlabId}/Others`, pushToFileFolderData);
           console.log('File uploaded successfully to GitLab project folder: Others');
         } catch (error) {
           console.log(`Error uploading file to GitLab project folder: Others: ${error.message}`);
         }
       }
 
-      const res = await axios.put(`http://10.8.0.12:5000/edit-moduleDB/${moduleID}`, usefulData);
+      const res = await axios.put(`http://10.8.0.14:5000/edit-moduleDB/${moduleID}`, usefulData);
       console.log('Module updated:', res.data);
       const logData = {
         index: 'badal',
@@ -198,7 +198,7 @@ function EditModule(props) {
           timestamp: new Date(),
         },
       };
-      await axios.post('http://10.8.0.12:5000/log', logData);
+      await axios.post('http://10.8.0.14:5000/log', logData);
       window.location.reload(); 
 
     } catch (error) {
@@ -210,7 +210,7 @@ function EditModule(props) {
           timestamp: new Date(),
         },
       };
-      await axios.post('http://10.8.0.12:5000/log', logData);
+      await axios.post('http://10.8.0.14:5000/log', logData);
       // TODO: handle error state 
     }finally {
       setIsLoading(false); // Set loading state off

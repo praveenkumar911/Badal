@@ -221,7 +221,7 @@ const SignUpComp = () => {
       const imageUrl = await uploadImageToMinio(formData.avatar);
       setFormData({ ...formData, ImgUrl: imageUrl });
 
-      const createSubgroupResponse = await axios.post('http://10.8.0.12:5000/create-org-subgroup', {
+      const createSubgroupResponse = await axios.post('http://10.8.0.14:5000/create-org-subgroup', {
         groupName: formData.OrgName.replace(/ /g, "_"),
         // description: 'Created in Badal Platform as an Organization',
         email: formData.email,
@@ -235,7 +235,7 @@ const SignUpComp = () => {
       const updatedFormData = { ...formData, GitlabID: gitlabId, ImgUrl: imageUrl, userGitLabId: userGitLabId ,gitlabUrl:userGitLaburl};
       const registerProgress = 100;
       setProgress(registerProgress);
-      await axios.post('http://10.8.0.12:5000/org-signup', updatedFormData);
+      await axios.post('http://10.8.0.14:5000/org-signup', updatedFormData);
 
      // window.location.reload(); // Reload the page after successful signup
 
@@ -270,7 +270,7 @@ const SignUpComp = () => {
       }
 
       try {
-        await axios.delete(`http://10.8.0.12:5000/delete-subgroup/${formData.GitlabID}`);
+        await axios.delete(`http://10.8.0.14:5000/delete-subgroup/${formData.GitlabID}`);
         console.log('GitLab Subgroup deleted successfully');
       } catch (deleteError) {
         console.error('Error deleting GitLab subgroup:', deleteError);

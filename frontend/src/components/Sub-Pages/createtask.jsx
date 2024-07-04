@@ -39,7 +39,7 @@ function CreateTask(props) {
   useEffect(() => {
     if (module) {
       setIsLoading(true); // Start loading
-      axios.get(`http://10.8.0.12:5000/modules/${module}`)
+      axios.get(`http://10.8.0.14:5000/modules/${module}`)
         .then((res) => {
           if (res.data) {
             setModuledata([res.data]); // Ensure data is in an array
@@ -110,7 +110,7 @@ function CreateTask(props) {
     let gitlabIssueUrl = '';
 
     try {
-      const response = await axios.post(`http://10.8.0.12:5000/create-issue/${moduledata[0].gitlabId}`, {
+      const response = await axios.post(`http://10.8.0.14:5000/create-issue/${moduledata[0].gitlabId}`, {
         title: formData.taskName,
         description: formData.taskDescription,
       });
@@ -118,7 +118,7 @@ function CreateTask(props) {
       gitlabIssueUrl = response.data.web_url; // Get the issue web URL from the response
     } catch (error) {
       console.error('Error creating GitLab issue:', error);
-      await axios.post('http://10.8.0.12:5000/log', {
+      await axios.post('http://10.8.0.14:5000/log', {
         index: 'My-logs',
         data: {
           message: `Error creating GitLab issue for task ${taskId}: ${error.message}`,
@@ -140,7 +140,7 @@ function CreateTask(props) {
     let newTask = null;
 
     try {
-      const response = await fetch('http://10.8.0.12:5000/create-task-DB', {
+      const response = await fetch('http://10.8.0.14:5000/create-task-DB', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ function CreateTask(props) {
       newTask = await response.json();
     } catch (error) {
       console.error('Error creating task:', error);
-      await axios.post('http://10.8.0.12:5000/log', {
+      await axios.post('http://10.8.0.14:5000/log', {
         index: 'badal',
         data: {
           message: `Error creating task ${taskId}: ${error.message}`,
@@ -166,7 +166,7 @@ function CreateTask(props) {
     }
 
     try {
-      const response = await fetch(`http://10.8.0.12:5000/module/${moduledata[0]._id}/tasks`, {
+      const response = await fetch(`http://10.8.0.14:5000/module/${moduledata[0]._id}/tasks`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ function CreateTask(props) {
         throw new Error('An error occurred while updating the module with the new task ID.');
       }
 
-      await axios.post('http://10.8.0.12:5000/log', {
+      await axios.post('http://10.8.0.14:5000/log', {
         index: 'badal',
         data: {
           message: `Updated module with new task ID ${newTask._id}`,
@@ -188,7 +188,7 @@ function CreateTask(props) {
       window.location.reload();
     } catch (error) {
       console.error('Error updating module:', error);
-      await axios.post('http://10.8.0.12:5000/log', {
+      await axios.post('http://10.8.0.14:5000/log', {
         index: 'badal',
         data: {
           message: `Error updating module with new task ID ${newTask._id}: ${error.message}`,

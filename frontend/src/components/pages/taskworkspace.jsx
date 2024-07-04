@@ -88,7 +88,7 @@ function Taskworkspace() {
   useEffect(() => { 
     async function fetchModuleDetails() {
         try {
-          const response = await axios.post(`http://10.8.0.12:5000/get-workspaceData/${moduleId}`);
+          const response = await axios.post(`http://10.8.0.14:5000/get-workspaceData/${moduleId}`);
           const data = response.data;
           if (data.length > 0) {
             setModuleDetails(data[0]); // Assuming you're only expecting one module detail object
@@ -105,7 +105,7 @@ function Taskworkspace() {
 
    useEffect(() => {
     axios
-      .post(`http://10.8.0.12:5000/get-task-DB-byworkspaceID/${moduleId}`)
+      .post(`http://10.8.0.14:5000/get-task-DB-byworkspaceID/${moduleId}`)
       .then((res) => {
         setTaskList(res.data);
       })
@@ -121,7 +121,7 @@ function Taskworkspace() {
   useEffect(() => {
     if (moduleDetails && moduleDetails.assignedTeam) {
       axios
-        .get(`http://10.8.0.12:5000/get-user-by-teamid/${moduleDetails.assignedTeam}`)
+        .get(`http://10.8.0.14:5000/get-user-by-teamid/${moduleDetails.assignedTeam}`)
         .then((response) => {
           setTeams(response.data);
           const userIds = response.data.map((team) => team.userId); 
@@ -135,7 +135,7 @@ function Taskworkspace() {
 
   const fetchUsernames = (userIds) => {
     axios
-      .post("http://10.8.0.12:5000/get-usernames", { userIds })
+      .post("http://10.8.0.14:5000/get-usernames", { userIds })
       .then((response) => {
         const fetchedUsernames = response.data.usernames;
         const userToUsernameMap = {};
@@ -180,7 +180,7 @@ function Taskworkspace() {
     const assignedUser = teamMembers.find((member) => member._id === selectedUserId);
     try {
       // Step 1: Fetch the GitLab ID of the selected user
-      const userResponse = await axios.get(`http://10.8.0.12:5000/get-user/${selectedUserId}`);
+      const userResponse = await axios.get(`http://10.8.0.14:5000/get-user/${selectedUserId}`);
       console.log(userResponse);
       const selectedUserGitlabId = userResponse.data[0].gitlabId;
   
@@ -188,14 +188,14 @@ function Taskworkspace() {
       const projectGitlabId = moduleDetails.forkedGitlabId; // Assuming moduleDetails contains the GitLab project ID
       const issueId = task.gitlabId; // Assuming each task has a GitLab issue ID 
    
-      await axios.post('http://10.8.0.12:5000/assign-issue', {
+      await axios.post('http://10.8.0.14:5000/assign-issue', {
         projectId: projectGitlabId,
         issueId: issueId,
         userId: selectedUserGitlabId,
       });
   
       // Step 3: Update the task assignment in your local database
-      await axios.put(`http://10.8.0.12:5000/update-task-assignment/${task.taskId}`, {
+      await axios.put(`http://10.8.0.14:5000/update-task-assignment/${task.taskId}`, {
         assignedto: selectedUserId,
       });
   
@@ -256,7 +256,7 @@ function Taskworkspace() {
   
     // Make API call to update completed status
     try {
-      const response = await fetch(`http://10.8.0.12:5000/updateCompleted/${moduleDetails.moduleId}/${moduleDetails.workspaceId}`, {
+      const response = await fetch(`http://10.8.0.14:5000/updateCompleted/${moduleDetails.moduleId}/${moduleDetails.workspaceId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -296,7 +296,7 @@ function Taskworkspace() {
     }
   
     try {
-      const response = await fetch(`http://10.8.0.12:5000/issue/update-completed`, {
+      const response = await fetch(`http://10.8.0.14:5000/issue/update-completed`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

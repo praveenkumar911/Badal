@@ -69,7 +69,7 @@
 //   useEffect(() => {
 //     const fetchUserData = async () => {
 //       try {
-//         const response = await axios.get(`http://10.8.0.12:5000/get-user/${userId}`);
+//         const response = await axios.get(`http://10.8.0.14:5000/get-user/${userId}`);
 //         if (response.data.length > 0) {
 //           const userData = response.data[0];
 //           setUserDetails({
@@ -105,7 +105,7 @@
 
 //   const handleUpdate = async () => {
 //     try {
-//       const response = await axios.put(`http://10.8.0.12:5000/update-user/${userId}`, userDetails);
+//       const response = await axios.put(`http://10.8.0.14:5000/update-user/${userId}`, userDetails);
       
 //       // Close the dialog after successful update
 //       setOpen(false);
@@ -379,7 +379,7 @@ export default function Profile() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://10.8.0.12:5000/get-user/${userId}`);
+        const response = await axios.get(`http://10.8.0.14:5000/get-user/${userId}`);
         if (response.data.length > 0) {
           const userData = response.data[0];
           setUserDetails({
@@ -433,7 +433,7 @@ export default function Profile() {
       }
   
       // Send the updated user details to the server
-      await axios.put(`http://10.8.0.12:5000/update-user/${userId}`, updatedUserDetails);
+      await axios.put(`http://10.8.0.14:5000/update-user/${userId}`, updatedUserDetails);
       
       // Update userDetails state after successful update
       setUserDetails(updatedUserDetails);

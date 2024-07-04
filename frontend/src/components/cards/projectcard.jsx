@@ -48,7 +48,7 @@ export const ProjectCard = ({ product, ...rest }) => {
   useEffect(() => {  
     const fetchTeamName = async () => {
       try {
-        const response = await axios.get(`http://10.8.0.12:5000/get-org/${product.assignedTo}`);
+        const response = await axios.get(`http://10.8.0.14:5000/get-org/${product.assignedTo}`);
         const team = response.data;
         if (team) {
           setAssignedTeamName(team.orgName);

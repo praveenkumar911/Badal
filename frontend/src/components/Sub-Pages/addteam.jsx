@@ -53,11 +53,11 @@ function CreateTeam() {
     const fetchNgos = async () => {
       try { 
         if (isP001Allowed) {
-          const res = await axios.get(`http://10.8.0.12:5000/get-org/${orgId}`); 
+          const res = await axios.get(`http://10.8.0.14:5000/get-org/${orgId}`); 
           setNgosList([res.data]);
           console.log("erdfgh", ngosList);
         } else if (isP005Allowed) {
-          const res = await axios.get(`http://10.8.0.12:5000/org/role2`);
+          const res = await axios.get(`http://10.8.0.14:5000/org/role2`);
           setNgosList(res.data);
           console.log("erdfgh", res.data); 
         } else {
@@ -77,39 +77,39 @@ function CreateTeam() {
       try {
         if (isP001Allowed) {
           // Make the API call to get extra permissions
-          const permissionsResponse = await axios.get('http://10.8.0.12:5000/get-extra-permissions');
+          const permissionsResponse = await axios.get('http://10.8.0.14:5000/get-extra-permissions');
           const permissions = permissionsResponse.data.permissions;
           setPermissionextra(permissions);
   
           // Make the API call to get team members
           if (permissions && Array.isArray(permissions) && permissions.length >= 2) {
             const teamSize = permissions[2].count;
-            const teamMembersResponse = await axios.get(`http://10.8.0.12:5000/get-users-by-org-for-team/${orgId}/${teamSize}`);
+            const teamMembersResponse = await axios.get(`http://10.8.0.14:5000/get-users-by-org-for-team/${orgId}/${teamSize}`);
             setTeamMembers(teamMembersResponse.data);
           } else {
             console.error('Invalid or missing permissions data.');
           }
   
           // Make the API call to get organization by ID
-          const orgDetailsResponse = await axios.get(`http://10.8.0.12:5000/organizationbyid/${orgId}`);
+          const orgDetailsResponse = await axios.get(`http://10.8.0.14:5000/organizationbyid/${orgId}`);
           setOrgGitID(orgDetailsResponse.data['gitlabId']);
         } else if (isP005Allowed) {
           // Make the API call to get extra permissions for P005
-          const permissionsResponse = await axios.get('http://10.8.0.12:5000/get-extra-permissions');
+          const permissionsResponse = await axios.get('http://10.8.0.14:5000/get-extra-permissions');
           const permissions = permissionsResponse.data.permissions;
           setPermissionextra(permissions);
   
           // Make the API call to get team members
           if (permissions && Array.isArray(permissions) && permissions.length >= 2) {
             const teamSize = permissions[1].count;
-            const teamMembersResponse = await axios.get(`http://10.8.0.12:5000/get-users-by-org-for-team/${projectOrg}/${teamSize}`);
+            const teamMembersResponse = await axios.get(`http://10.8.0.14:5000/get-users-by-org-for-team/${projectOrg}/${teamSize}`);
             setTeamMembers(teamMembersResponse.data);
           } else {
             console.error('Invalid or missing permissions data.');
           }
   
           // Make the API call to get organization by ID
-          const orgDetailsResponse = await axios.get(`http://10.8.0.12:5000/organizationbyid/${projectOrg}`);
+          const orgDetailsResponse = await axios.get(`http://10.8.0.14:5000/organizationbyid/${projectOrg}`);
           setOrgGitID(orgDetailsResponse.data['gitlabId']);
         } else {
           console.error('Invalid permissions.');
@@ -131,7 +131,7 @@ function CreateTeam() {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await axios.get('http://10.8.0.12:5000/api/skills');
+        const res = await axios.get('http://10.8.0.14:5000/api/skills');
         setSkillsList(res.data);
       } catch (error) {
         console.log(error);
@@ -157,7 +157,7 @@ function CreateTeam() {
     try {
       setLoading(true);
       // Step 1: Create subgroup with users
-      const createSubgroupResponse = await axios.post(`http://10.8.0.12:5000/create-subgroup-with-users/${OrgGitID}`, {
+      const createSubgroupResponse = await axios.post(`http://10.8.0.14:5000/create-subgroup-with-users/${OrgGitID}`, {
         name: teamName.replace(/\s/g, "_"), // Replace with an appropriate name
         description: 'Created In Badal ', // Replace with an appropriate description
         userIds: selectedTeamMembers.map(member => member.gitlabId),
@@ -179,12 +179,12 @@ function CreateTeam() {
           OrgId:orgId,
           AssignedModules: [], // You may include assigned modules if applicable
         };
-        const createTeamResponse = await axios.post('http://10.8.0.12:5000/create-team', createTeamPayload);
+        const createTeamResponse = await axios.post('http://10.8.0.14:5000/create-team', createTeamPayload);
   
         const teamId = createTeamResponse.data.teamId;
     
         // Step 3: Update team users
-        const updateTeamUserResponse = await axios.put('http://10.8.0.12:5000/update-teamuser', {
+        const updateTeamUserResponse = await axios.put('http://10.8.0.14:5000/update-teamuser', {
           userIds: selectedTeamMembers.map(member => member.userId),
           teamId: teamId,
         });
@@ -203,12 +203,12 @@ function CreateTeam() {
           OrgId:projectOrg, 
           AssignedModules: [], // You may include assigned modules if applicable
         };
-        const createTeamResponse = await axios.post('http://10.8.0.12:5000/create-team', createTeamPayload);
+        const createTeamResponse = await axios.post('http://10.8.0.14:5000/create-team', createTeamPayload);
   
         const teamId = createTeamResponse.data.teamId;
     
         // Step 3: Update team users
-        const updateTeamUserResponse = await axios.put('http://10.8.0.12:5000/update-teamuser', {
+        const updateTeamUserResponse = await axios.put('http://10.8.0.14:5000/update-teamuser', {
           userIds: selectedTeamMembers.map(member => member.userId),
           teamId: teamId,
         });

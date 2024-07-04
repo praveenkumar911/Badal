@@ -23,7 +23,7 @@ function Projects() {
   const [isNgo, setIsNgo] = useState(false);
   useEffect(() => {
     // Make a request to fetch organization data
-    fetch(`http://10.8.0.12:5000/get-org/${orgId}`)
+    fetch(`http://10.8.0.14:5000/get-org/${orgId}`)
       .then(response => response.json())
       .then(data => {
         // Check if isNgo is true
@@ -35,7 +35,7 @@ function Projects() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const response = await fetch("http://10.8.0.12:5000/get-project-DB");
+        const response = await fetch("http://10.8.0.14:5000/get-project-DB");
         const data = await response.json();
 
         // Map API data to the format expected by the component

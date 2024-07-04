@@ -250,7 +250,7 @@ export default function NgoDetails({ ngo }) {
       }
 
       // Update NGO details in backend
-      await axios.put(`http://10.8.0.12:5000/update-org/${updatedNgo.orgId}`, updatedNgo);
+      await axios.put(`http://10.8.0.14:5000/update-org/${updatedNgo.orgId}`, updatedNgo);
 
       // Update ngo state with updatedNgo
       setEditedNgo(updatedNgo);

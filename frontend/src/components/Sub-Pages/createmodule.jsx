@@ -62,7 +62,7 @@ function CreateModule(props) {
     useEffect(() => {
       const fetchSkills = async () => {
         try {
-          const res = await axios.get('http://10.8.0.12:5000/api/skills');
+          const res = await axios.get('http://10.8.0.14:5000/api/skills');
           setSkillsList(res.data);
         } catch (error) {
           console.log(error);
@@ -75,7 +75,7 @@ const [projectowner, setProjectOwner] = useState('');
 useEffect(() => {
   const fetchSkills = async () => {
     try {
-      const res = await axios.get(`http://10.8.0.12:5000/get-project/${projectID}`);
+      const res = await axios.get(`http://10.8.0.14:5000/get-project/${projectID}`);
       setProjectData(res.data);
       setGitProjectName(res.data.Gitprojectname);
     } catch (error) {
@@ -240,7 +240,7 @@ if (endDate <= usefulData.moduleDateStart) {
 
         
   
-        const createRepoFolderRes = await axios.post(`http://10.8.0.12:5000/create-repo-folder/${GitGroupID}`, createRepoFolderData);
+        const createRepoFolderRes = await axios.post(`http://10.8.0.14:5000/create-repo-folder/${GitGroupID}`, createRepoFolderData);
   
         console.log(`Module '${projectName}' created successfully with folders and README in GitLab.`);
         const { id: GitlabID, name: Gitprojectname, web_url: GitWebUrl } = createRepoFolderRes.data.project;
@@ -268,7 +268,7 @@ if (endDate <= usefulData.moduleDateStart) {
         const dbDocument = selectedFile3 ? await uploadImage(selectedFile3, 'Database Documentation') : '';
      
         // Send POST request to server endpoint with module data and GitLab project ID
-        const res = await axios.post('http://10.8.0.12:5000/create-module-DB', { ...usefulData, GitlabID, Gitprojectname, GitWebUrl,  requirementsDocument,
+        const res = await axios.post('http://10.8.0.14:5000/create-module-DB', { ...usefulData, GitlabID, Gitprojectname, GitWebUrl,  requirementsDocument,
         uiMocks,
         apiDocument,
         dbDocument,OrgID:orgId});
@@ -276,14 +276,14 @@ if (endDate <= usefulData.moduleDateStart) {
         console.log('New module added to collectionModule collection: ', moduleId);
   
         // Send POST request to server endpoint to add the module id to the project's ModuleIds array
-        const response = await axios.post(`http://10.8.0.12:5000/add-module-ids/${usefulData.projectid}`, { moduleIds: moduleId });
+        const response = await axios.post(`http://10.8.0.14:5000/add-module-ids/${usefulData.projectid}`, { moduleIds: moduleId });
         console.log('Module id added to the project:', response.data);
   
         if (selectedFile) {
           try {
             const pushToFileFolderData = new FormData();
             pushToFileFolderData.append('file', selectedFile);
-            await axios.post(`http://10.8.0.12:5000/push-to-folder/${GitlabID}/Requirements`, pushToFileFolderData);
+            await axios.post(`http://10.8.0.14:5000/push-to-folder/${GitlabID}/Requirements`, pushToFileFolderData);
             console.log('File uploaded successfully to GitLab project folder: Requirements');
           } catch (error) {
             console.log(`Error uploading file to GitLab project folder: Requirements: ${error.message}`);
@@ -294,7 +294,7 @@ if (endDate <= usefulData.moduleDateStart) {
           try {
             const pushToFileFolderData = new FormData();
             pushToFileFolderData.append('file', selectedFile1);
-            await axios.post(`http://10.8.0.12:5000/push-to-folder/${GitlabID}/UI Mocks`, pushToFileFolderData);
+            await axios.post(`http://10.8.0.14:5000/push-to-folder/${GitlabID}/UI Mocks`, pushToFileFolderData);
             console.log('File uploaded successfully to GitLab project folder: UI Mocks');
           } catch (error) {
             console.log(`Error uploading file to GitLab project folder: UI Mocks: ${error.message}`);
@@ -305,7 +305,7 @@ if (endDate <= usefulData.moduleDateStart) {
           try {
             const pushToFileFolderData = new FormData();
             pushToFileFolderData.append('file', selectedFile2);
-            await axios.post(`http://10.8.0.12:5000/push-to-folder/${GitlabID}/Database Documentation`, pushToFileFolderData);
+            await axios.post(`http://10.8.0.14:5000/push-to-folder/${GitlabID}/Database Documentation`, pushToFileFolderData);
             console.log('File uploaded successfully to GitLab project folder: Database Documentation');
           } catch (error) {
             console.log(`Error uploading file to GitLab project folder: Database Documentation: ${error.message}`);
@@ -316,7 +316,7 @@ if (endDate <= usefulData.moduleDateStart) {
           try {
             const pushToFileFolderData = new FormData();
             pushToFileFolderData.append('file', selectedFile3);
-            await axios.post(`http://10.8.0.12:5000/push-to-folder/${GitlabID}/API Documentation`, pushToFileFolderData);
+            await axios.post(`http://10.8.0.14:5000/push-to-folder/${GitlabID}/API Documentation`, pushToFileFolderData);
             console.log('File uploaded successfully to GitLab project folder: API Documentation');
           } catch (error) {
             console.log(`Error uploading file to GitLab project folder: API Documentation: ${error.message}`);
@@ -327,7 +327,7 @@ if (endDate <= usefulData.moduleDateStart) {
           try {
             const pushToFileFolderData = new FormData();
             pushToFileFolderData.append('file', selectedFile4);
-            await axios.post(`http://10.8.0.12:5000/push-to-folder/${GitlabID}/Others`, pushToFileFolderData);
+            await axios.post(`http://10.8.0.14:5000/push-to-folder/${GitlabID}/Others`, pushToFileFolderData);
             console.log('File uploaded successfully to GitLab project folder: Others');
           } catch (error) {
             console.log(`Error uploading file to GitLab project folder: Others: ${error.message}`);
@@ -341,7 +341,7 @@ if (endDate <= usefulData.moduleDateStart) {
             timestamp: new Date(),
           },
         };
-        await axios.post('http://10.8.0.12:5000/log', logData);
+        await axios.post('http://10.8.0.14:5000/log', logData);
   
         window.location.reload();
       } catch (error) {
@@ -353,7 +353,7 @@ if (endDate <= usefulData.moduleDateStart) {
             timestamp: new Date(),
           },
         };
-        await axios.post('http://10.8.0.12:5000/log', logData);
+        await axios.post('http://10.8.0.14:5000/log', logData);
       }finally {
         setIsLoading(false); // Set loading state off
       }

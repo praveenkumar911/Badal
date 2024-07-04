@@ -83,7 +83,7 @@ function Createproject() {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await axios.get('http://10.8.0.12:5000/api/skills');
+        const res = await axios.get('http://10.8.0.14:5000/api/skills');
         setSkillsList(res.data);
       } catch (error) {
         console.log(error);
@@ -100,11 +100,11 @@ function Createproject() {
   
         if (isP005Allowed) {
           console.log("Fetching data for P005...");
-          const res = await axios.get(`http://10.8.0.12:5000/org/role2`);
+          const res = await axios.get(`http://10.8.0.14:5000/org/role2`);
           setNgosList(res.data);
         } else if (isP006Allowed) {
           console.log("Fetching data for P006...");
-          const res = await axios.get(`http://10.8.0.12:5000/org/role2`);
+          const res = await axios.get(`http://10.8.0.14:5000/org/role2`);
           setNgosList(res.data);
         } else {
           console.error("Neither P005 nor P006 is allowed");
@@ -123,7 +123,7 @@ function Createproject() {
 
   const fetchUsersByOrg = async (projectOwner) => {
     try {
-      const res = await axios.get(`http://10.8.0.12:5000/get-users-by-org/${projectOwner}`);
+      const res = await axios.get(`http://10.8.0.14:5000/get-users-by-org/${projectOwner}`);
       setProjectManagers(res.data);
     } catch (error) {
       console.log(error);
@@ -328,9 +328,9 @@ function Createproject() {
       const ngoFirstLetter = ngo.orgName.charAt(0).toUpperCase();
       const projectCount = ngo.projects.length + 1;
       const projectName = `${ngoAbbreviation}${ngoFirstLetter}${projectCount.toString().padStart(3, '0')}`;
-      const createProjectRes = await axios.post(`http://10.8.0.12:5000/create-subgroup/${GitGroupID}`, {
+      const createProjectRes = await axios.post(`http://10.8.0.14:5000/create-subgroup/${GitGroupID}`, {
         name:projectName,
-        description: `BOT: Project created as  [**${usefulData.projectName}**](http://10.8.0.12:5000:3000/module/${usefulData.projectName}) \n \n \n${usefulData.projectDescription.slice(0, 125)}...`, 
+        description: `BOT: Project created as  [**${usefulData.projectName}**](http://10.8.0.14:5000:3000/module/${usefulData.projectName}) \n \n \n${usefulData.projectDescription.slice(0, 125)}...`, 
         //groupId:GitGroupID,
       }); 
       const gitlabProjectId = createProjectRes.data.id;
@@ -338,7 +338,7 @@ function Createproject() {
       const name1= createProjectRes.data.name;
   
       // Create project in local database with GitLab ID and web URL
-      const createProjectDbRes = await axios.post('http://10.8.0.12:5000/create-project-DB', {
+      const createProjectDbRes = await axios.post('http://10.8.0.14:5000/create-project-DB', {
         ...usefulData,
         //projectField: ngo.ngoName,
         GitlabID: gitlabProjectId,  
@@ -349,11 +349,11 @@ function Createproject() {
       const projectId = createProjectDbRes.data.projectId;
   
       // Add project to NGO in local database
-      await axios.post('http://10.8.0.12:5000/update-project-org', {
+      await axios.post('http://10.8.0.14:5000/update-project-org', {
         orgId: usefulData.projectOwner,
         projectId: projectId,
       });
-      const updateProjectManagerRes = await axios.put(`http://10.8.0.12:5000/update-role/${usefulData.projectManager}`, {
+      const updateProjectManagerRes = await axios.put(`http://10.8.0.14:5000/update-role/${usefulData.projectManager}`, {
       roleId: 'R002-B',
     });
 
@@ -366,7 +366,7 @@ function Createproject() {
           timestamp: new Date(),
         },
       };
-      await axios.post('http://10.8.0.12:5000/log', logData);
+      await axios.post('http://10.8.0.14:5000/log', logData);
 
   
       window.location.reload();
@@ -381,7 +381,7 @@ function Createproject() {
           timestamp: new Date(),
         },
       };
-      await axios.post('http://10.8.0.12:5000/log', logData);
+      await axios.post('http://10.8.0.14:5000/log', logData);
     }finally {
       setIsLoading(false); // Set loading state off
     }

@@ -62,7 +62,7 @@ function App() {
 
   const fetchUserData = async (token) => {
     try {
-      const dataResponse = await fetch("http://10.8.0.12:5000/get-permissions", {
+      const dataResponse = await fetch("http://10.8.0.14:5000/get-permissions", {
         headers: {
           "Authorization": `Bearer ${token}`,
         },
@@ -89,7 +89,7 @@ function App() {
 
   const handleLogin = async (formData) => {
     try {
-      const response = await fetch("http://10.8.0.12:5000/login", {
+      const response = await fetch("http://10.8.0.14:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

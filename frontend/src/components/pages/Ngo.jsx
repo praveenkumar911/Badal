@@ -15,7 +15,7 @@ function Ngo() {
 
   // Fetch NGOs from the API
   useEffect(() => {
-    axios.get('http://10.8.0.12:5000/org/role2')
+    axios.get('http://10.8.0.14:5000/org/role2')
       .then(response => { 
         const fetchedNgos = response.data.filter(org => org.isNgo === "true");
         setNgos(fetchedNgos);

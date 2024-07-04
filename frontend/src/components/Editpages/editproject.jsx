@@ -53,7 +53,7 @@ const navigate = useNavigate();
 useEffect(() => {
   const fetchSkills = async () => {
     try {
-      const res = await axios.get('http://10.8.0.12:5000/api/skills');
+      const res = await axios.get('http://10.8.0.14:5000/api/skills');
       setSkillsList(res.data);
     } catch (error) {
       console.log(error);
@@ -64,7 +64,7 @@ useEffect(() => {
 useEffect(() => {
   const fetchProjectData = async () => {
     try {
-      const projectRes = await axios.get(`http://10.8.0.12:5000/get-project/${projectId}`);
+      const projectRes = await axios.get(`http://10.8.0.14:5000/get-project/${projectId}`);
       setUsefulData({
         ...projectRes.data,
         projectDateStart: new Date(projectRes.data.projectDateStart),  // Convert to Date object
@@ -107,7 +107,7 @@ const handleFileChange = (event) => {
 useEffect(() => {
   const fetchNgos = async () => {
     try {
-      const res = await axios.get('http://10.8.0.12:5000/org');
+      const res = await axios.get('http://10.8.0.14:5000/org');
       setNgosList(res.data);
       console.log(ngosList)
     } catch (error) {
@@ -251,15 +251,15 @@ const handeleEditProject = async () => {
 
     // Update project in GitLab
     const { projectName, projectDescription, gitlabId  } = usefulData;
-    const gitlabProjectRes = await axios.put(`http://10.8.0.12:5000/edit-group-description/${gitlabId }`, {
+    const gitlabProjectRes = await axios.put(`http://10.8.0.14:5000/edit-group-description/${gitlabId }`, {
       //name: projectName,
-      newDescription: `System Generated - This is a PROJECT created in Badal with the name [**${projectName}**](http://10.8.0.12:5000:3000/project)\n \n \n${projectDescription.slice(0,100)}`
+      newDescription: `System Generated - This is a PROJECT created in Badal with the name [**${projectName}**](http://10.8.0.14:5000:3000/project)\n \n \n${projectDescription.slice(0,100)}`
     });
     
     const gitlabProjectWebUrl = gitlabProjectRes.data.web_url;
 
     // Update project in local database with GitLab web URL
-    const updateProjectDbRes = await axios.put(`http://10.8.0.12:5000/edit-project-DB/${projectId}`, 
+    const updateProjectDbRes = await axios.put(`http://10.8.0.14:5000/edit-project-DB/${projectId}`, 
       usefulData
     );
     
@@ -272,7 +272,7 @@ const handeleEditProject = async () => {
         timestamp: new Date(),
       },
     };
-    await axios.post('http://10.8.0.12:5000/log', logData);
+    await axios.post('http://10.8.0.14:5000/log', logData);
     console.log((updateProjectDbRes));
     navigate('/rcts/badal/project')
 
@@ -289,7 +289,7 @@ const handeleEditProject = async () => {
         timestamp: new Date(),
       },
     };
-    await axios.post('http://10.8.0.12:5000/log', logData);
+    await axios.post('http://10.8.0.14:5000/log', logData);
   }finally {
     setIsLoading(false); // Set loading state off
   }

@@ -72,7 +72,7 @@ function Team() {
   const [isNgo, setIsNgo] = useState(false);
   useEffect(() => {
     // Make a request to fetch organization data
-    fetch(`http://10.8.0.12:5000/get-org/${orgId}`)
+    fetch(`http://10.8.0.14:5000/get-org/${orgId}`)
       .then(response => response.json())
       .then(data => {
         // Check if isNgo is true
@@ -107,7 +107,7 @@ function Team() {
   useEffect(() => {
     // Fetch all teams data
     axios
-      .get("http://10.8.0.12:5000/get-all-teams")
+      .get("http://10.8.0.14:5000/get-all-teams")
       .then((response) => {
         const allTeams = response.data;
 
@@ -129,7 +129,7 @@ function Team() {
 
       if (userIds.length > 0) {
         axios
-          .post("http://10.8.0.12:5000/get-usernames", { userIds })
+          .post("http://10.8.0.14:5000/get-usernames", { userIds })
           .then((response) => {
             const fetchedUsernames = response.data.usernames;
 

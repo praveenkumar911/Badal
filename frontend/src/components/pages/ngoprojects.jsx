@@ -35,7 +35,7 @@ function NGOProjects() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const response = await fetch("http://10.8.0.12:5000/get-project-DB");
+        const response = await fetch("http://10.8.0.14:5000/get-project-DB");
         const data = await response.json();
 
         // Map the API data to the format expected by your component

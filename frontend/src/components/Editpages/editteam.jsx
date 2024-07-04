@@ -54,7 +54,7 @@ function EditTeam(props) {
   useEffect(() => {
     const fetchTeamDetails = async () => {
       try {
-        const response = await axios.get(`http://10.8.0.12:5000/get-team-by-id/${teamId}`);
+        const response = await axios.get(`http://10.8.0.14:5000/get-team-by-id/${teamId}`);
         setTeamDetails(response.data);
         setTeamName(response.data.teamName);  
         setDevTime(response.data.availabilityTime);
@@ -65,7 +65,7 @@ function EditTeam(props) {
         const userIds = response.data.userIds;
         
         // Fetch usernames based on user IDs
-        const usernamesResponse = await axios.post('http://10.8.0.12:5000/get-usernames', { userIds });
+        const usernamesResponse = await axios.post('http://10.8.0.14:5000/get-usernames', { userIds });
         const usernames = usernamesResponse.data.usernames;
 
         // Set usernames in the state
@@ -86,10 +86,10 @@ function EditTeam(props) {
     const fetchNgos = async () => {
       try {
         if (isP001Allowed) {
-          const res = await axios.get(`http://10.8.0.12:5000/get-org/${orgId}`);
+          const res = await axios.get(`http://10.8.0.14:5000/get-org/${orgId}`);
           setNgosList(res.data);
         } else if (isP005Allowed) {
-          const res = await axios.get(`http://10.8.0.12:5000/org/role2`);
+          const res = await axios.get(`http://10.8.0.14:5000/org/role2`);
           setNgosList(res.data);
         } else {
           console.error("Neither P001 nor P005 is allowed");
@@ -106,34 +106,34 @@ function EditTeam(props) {
     const fetchData = async () => {
       try {
         if (isP001Allowed) {
-          const permissionsResponse = await axios.get('http://10.8.0.12:5000/get-extra-permissions');
+          const permissionsResponse = await axios.get('http://10.8.0.14:5000/get-extra-permissions');
           const permissions = permissionsResponse.data.permissions;
           setPermissionextra(permissions);
 
           if (permissions && Array.isArray(permissions) && permissions.length >= 2) {
             const teamSize = permissions[1].count;
-            const teamMembersResponse = await axios.get(`http://10.8.0.12:5000/get-users-by-org-for-team/${orgId}/${teamSize}`);
+            const teamMembersResponse = await axios.get(`http://10.8.0.14:5000/get-users-by-org-for-team/${orgId}/${teamSize}`);
             setTeamMembers(teamMembersResponse.data);
           } else {
             console.error('Invalid or missing permissions data.');
           } 
 
-          const orgDetailsResponse = await axios.get(`http://10.8.0.12:5000/organizationbyid/${orgId}`);
+          const orgDetailsResponse = await axios.get(`http://10.8.0.14:5000/organizationbyid/${orgId}`);
           setOrgGitID(orgDetailsResponse.data['gitlabId']);
         } else if (isP005Allowed) {
-          const permissionsResponse = await axios.get('http://10.8.0.12:5000/get-extra-permissions');
+          const permissionsResponse = await axios.get('http://10.8.0.14:5000/get-extra-permissions');
           const permissions = permissionsResponse.data.permissions;
           setPermissionextra(permissions);
 
           if (permissions && Array.isArray(permissions) && permissions.length >= 2) {
             const teamSize = permissions[1].count;
-            const teamMembersResponse = await axios.get(`http://10.8.0.12:5000/get-users-by-org-for-team/${projectOrg}/${teamSize}`);
+            const teamMembersResponse = await axios.get(`http://10.8.0.14:5000/get-users-by-org-for-team/${projectOrg}/${teamSize}`);
             setTeamMembers(teamMembersResponse.data);
           } else {
             console.error('Invalid or missing permissions data.');
           }
 
-          const orgDetailsResponse = await axios.get(`http://10.8.0.12:5000/organizationbyid/${projectOrg}`);
+          const orgDetailsResponse = await axios.get(`http://10.8.0.14:5000/organizationbyid/${projectOrg}`);
           setOrgGitID(orgDetailsResponse.data['gitlabId']);
         } else {
           console.error('Invalid permissions.');
@@ -150,7 +150,7 @@ function EditTeam(props) {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const res = await axios.get('http://10.8.0.12:5000/api/skills');
+        const res = await axios.get('http://10.8.0.14:5000/api/skills');
         setSkillsList(res.data);
       } catch (error) {
         console.log(error);
@@ -182,7 +182,7 @@ function EditTeam(props) {
     try {
       // Fetch user Git IDs when selected team members change
       const userIds = selectedTeamMembers.map(member => member.userId);
-      const response = await axios.post('http://10.8.0.12:5000/get-usergitids', { userIds });
+      const response = await axios.post('http://10.8.0.14:5000/get-usergitids', { userIds });
       const userGitIds = response.data.usergitIds; // Extract userGitIds from the response
   
       // Log the user Git IDs
@@ -201,7 +201,7 @@ function EditTeam(props) {
       setLoading(true);
   
       // Send data to /edit-subgroup-users/:subgroupId
-      const subgroupResponse = await axios.put(`http://10.8.0.12:5000/update-subgroup/${subgroupid}`, {
+      const subgroupResponse = await axios.put(`http://10.8.0.14:5000/update-subgroup/${subgroupid}`, {
         userIds: userGitIds, // Pass userGitIds in the payload as userIds
         name: teamName.replace(/\s/g, "_"),
         description: "created in Badal"
@@ -210,7 +210,7 @@ function EditTeam(props) {
       // If the GitLab subgroup update was successful
       if (subgroupResponse.status === 200) {
   
-        const teamUpdateResponse = await axios.put(`http://10.8.0.12:5000/update-team/${teamId}`, {
+        const teamUpdateResponse = await axios.put(`http://10.8.0.14:5000/update-team/${teamId}`, {
           teamName,
           userIds: userIds,
           teamSkills: skillsRequired.map(skill => skill.name), // Add the team skills
@@ -220,7 +220,7 @@ function EditTeam(props) {
         // If the team update was successful
         if (teamUpdateResponse.status === 200) {
           // Send data to /update-teamuser
-          const updateTeamUserResponse = await axios.put('http://10.8.0.12:5000/update-teamuser', {
+          const updateTeamUserResponse = await axios.put('http://10.8.0.14:5000/update-teamuser', {
             userIds: selectedTeamMembers.map(member => member.userId),
             teamId: teamId,
           });
@@ -228,7 +228,7 @@ function EditTeam(props) {
           // If the team update was successful
           if (updateTeamUserResponse.status === 200) {
             // Send data to /delete-teamuser
-            const deleteTeamUserResponse = await axios.put('http://10.8.0.12:5000/delete-teamuser', {
+            const deleteTeamUserResponse = await axios.put('http://10.8.0.14:5000/delete-teamuser', {
               userIds: deselectedUserIds, // Pass deselectedUserIds in the payload as userIds
               teamId: teamId,
             });

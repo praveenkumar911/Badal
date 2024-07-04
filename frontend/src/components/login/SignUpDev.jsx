@@ -37,7 +37,7 @@ const SignupDev = () => {
   useEffect(() => {
     const fetchOrganizations = async () => {
       try {
-        const response = await axios.get("http://10.8.0.12:5000/org/role2");
+        const response = await axios.get("http://10.8.0.14:5000/org/role2");
         setOrganizations(response.data);
       } catch (error) {
         console.error("Error fetching organizations:", error);
@@ -83,7 +83,7 @@ const SignupDev = () => {
         setLoading(true);
 
         const createUserResponse = await axios.post(
-          "http://10.8.0.12:5000/create-user",
+          "http://10.8.0.14:5000/create-user",
           {
             email: formData.email,
             name: `${formData.firstName}`,
@@ -100,7 +100,7 @@ const SignupDev = () => {
         };
 
         const signupResponse = await axios.post(
-          "http://10.8.0.12:5000/signup",
+          "http://10.8.0.14:5000/signup",
           updatedFormData
         );
 

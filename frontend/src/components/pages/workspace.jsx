@@ -24,7 +24,7 @@ function Workspace(props) {
     const [moduleDetails, setModuleDetails] = useState([])
     React.useEffect(() => {
       axios
-        .get("http://10.8.0.12:5000/get-allmodules")
+        .get("http://10.8.0.14:5000/get-allmodules")
         .then((res) => {
           setModuleDetails(res.data.data);
         })
@@ -40,7 +40,7 @@ function Workspace(props) {
      useEffect(() => {
 
         // Fetch image URLs based on orgIds
-        axios.get('http://10.8.0.12:5000/get-img-url', { params: { orgIds:  project.orgId } })
+        axios.get('http://10.8.0.14:5000/get-img-url', { params: { orgIds:  project.orgId } })
           .then(response => {
             // setOrgImgUrls(response.data.imgUrls.reduce((acc, imgUrl, index) => {
             //   acc[project[index].orgId] = imgUrl;

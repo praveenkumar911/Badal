@@ -39,7 +39,7 @@ function Companies() {
   useEffect(() => {
     // Fetch data from the API endpoint
     axios
-      .get("http://10.8.0.12:5000/org/role2")
+      .get("http://10.8.0.14:5000/org/role2")
       .then((response) => {
         // Filter organizations where isNgo is false
         const filteredCompanies = response.data.filter(

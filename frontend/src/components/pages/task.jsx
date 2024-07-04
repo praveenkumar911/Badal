@@ -92,7 +92,7 @@ function Task() {
   useEffect(() => {
     async function fetchModuleDetails() {
       try {
-        const response = await fetch(`http://10.8.0.12:5000/modules/${moduleId}`);
+        const response = await fetch(`http://10.8.0.14:5000/modules/${moduleId}`);
         const data = await response.json();
         setModuleDetails(data);
       } catch (error) {
@@ -105,7 +105,7 @@ function Task() {
 
   useEffect(() => {
     axios
-      .get(`http://10.8.0.12:5000/tasks/${moduleId}`)
+      .get(`http://10.8.0.14:5000/tasks/${moduleId}`)
       .then((res) => {
         setTaskList(res.data);
       })
@@ -121,7 +121,7 @@ function Task() {
   useEffect(() => {
     if (moduleDetails && moduleDetails.teamsAssigned) {
       axios
-        .get(`http://10.8.0.12:5000/get-user-by-teamid/${moduleDetails.teamsAssigned[0]}`)
+        .get(`http://10.8.0.14:5000/get-user-by-teamid/${moduleDetails.teamsAssigned[0]}`)
         .then((response) => {
           setTeams(response.data);
           const userIds = response.data.map((team) => team.userId);
@@ -135,7 +135,7 @@ function Task() {
 
   const fetchUsernames = (userIds) => {
     axios
-      .post("http://10.8.0.12:5000/get-usernames", { userIds })
+      .post("http://10.8.0.14:5000/get-usernames", { userIds })
       .then((response) => {
         const fetchedUsernames = response.data.usernames;
         const userToUsernameMap = {};
@@ -177,21 +177,21 @@ function Task() {
     const assignedUser = teamMembers.find((member) => member._id === selectedUserId);
     try {
       // Step 1: Fetch the GitLab ID of the selected user
-      const userResponse = await axios.get(`http://10.8.0.12:5000/get-user/${selectedUserId}`);
+      const userResponse = await axios.get(`http://10.8.0.14:5000/get-user/${selectedUserId}`);
       const selectedUserGitlabId = userResponse.data.gitlabId;
   
       // Step 2: Send a POST request to assign the issue on GitLab
       const projectGitlabId = moduleDetails.gitlabId; // Assuming moduleDetails contains the GitLab project ID
       const issueId = task.gitlabId; // Assuming each task has a GitLab issue ID 
    
-      await axios.post('http://10.8.0.12:5000/assign-issue', {
+      await axios.post('http://10.8.0.14:5000/assign-issue', {
         projectId: projectGitlabId,
         issueId: issueId,
         userId: selectedUserGitlabId,
       });
   
       // Step 3: Update the task assignment in your local database
-      await axios.put(`http://10.8.0.12:5000/update-task-assignment/${task.taskId}`, {
+      await axios.put(`http://10.8.0.14:5000/update-task-assignment/${task.taskId}`, {
         assignedto: selectedUserId,
       });
   
@@ -209,9 +209,9 @@ function Task() {
     }
   }
   const handleDeleteModule = () => { 
-    axios.delete(`http://10.8.0.12:5000/delete-repo/${moduleDetails.gitlabId}`)
+    axios.delete(`http://10.8.0.14:5000/delete-repo/${moduleDetails.gitlabId}`)
       .then(() => {
-        axios.delete(`http://10.8.0.12:5000/delete-module/${moduleDetails.moduleId}`) 
+        axios.delete(`http://10.8.0.14:5000/delete-module/${moduleDetails.moduleId}`) 
           .then((res) => {
             console.log(res.data);
             const logData = { 
@@ -221,7 +221,7 @@ function Task() {
                 timestamp: new Date(),
               },
             };
-           axios.post(`http://10.8.0.12:5000/log`, logData); 
+           axios.post(`http://10.8.0.14:5000/log`, logData); 
         
             navigate(`/workspace`);
           })
@@ -234,7 +234,7 @@ function Task() {
                 timestamp: new Date(),
               },
             };
-            axios.post(`http://10.8.0.12:5000/log`, logData);
+            axios.post(`http://10.8.0.14:5000/log`, logData);
             // Show an error alert to the user
             alert(`Error deleting project "${moduleDetails.moduleName}": ${err.message}`);
           });
@@ -248,7 +248,7 @@ function Task() {
             timestamp: new Date(),
           },
         };
-        axios.post(`http://10.8.0.12:5000/log`, logData);
+        axios.post(`http://10.8.0.14:5000/log`, logData);
         // Show an error alert to the user
         alert(`Error deleting project "${moduleDetails.moduleName}": ${err.message}`);
       });
