@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/rcts/badal/static/css/main.6fef6766.css",
+    "main.js": "/rcts/badal/static/js/main.9c30f2e8.js",
+    "static/media/projectPH.png": "/rcts/badal/static/media/projectPH.39b56662f902d72fa8e0.png",
+    "static/media/RCTS.png": "/rcts/badal/static/media/RCTS.6239f6ed54ce514d2d89.png",
+    "static/media/placeHolder.jpg": "/rcts/badal/static/media/placeHolder.5b19101215bfc268e6aa.jpg",
+    "static/media/rural.svg": "/rcts/badal/static/media/rural.aa037fcca3eb1e899e46188ef5c4d25c.svg",
+    "static/media/healthcare.svg": "/rcts/badal/static/media/healthcare.88203909fd49b955650871343112ec30.svg",
+    "static/media/material.svg": "/rcts/badal/static/media/material.c100653eb13ee212aca0feda571da8be.svg",
+    "static/media/gitlab.svg": "/rcts/badal/static/media/gitlab.4cb5aa1b6871c92c4ef2471db1b82987.svg",
+    "static/media/Vector.svg": "/rcts/badal/static/media/Vector.a8f2211d8c15cdc814aa8a2ce390b5da.svg",
+    "index.html": "/rcts/badal/index.html",
+    "static/media/education.svg": "/rcts/badal/static/media/education.4f53e0b7b10dd76390414eef945bf322.svg",
+    "main.6fef6766.css.map": "/rcts/badal/static/css/main.6fef6766.css.map",
+    "main.9c30f2e8.js.map": "/rcts/badal/static/js/main.9c30f2e8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6fef6766.css",
+    "static/js/main.9c30f2e8.js"
+  ]
+}
